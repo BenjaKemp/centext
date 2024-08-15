@@ -18,8 +18,6 @@ export const NavigationTreeNodeComponent: React.FC<TreeNodeProps> = ({
   const [expanded, setExpanded] = useState(false);
   const key = `${parentKey}-${node.name}`;
 
-  console.log('key', key)
-
   const toggleExpand = useCallback((event: React.MouseEvent) => {
     event.stopPropagation();
     setExpanded(prevExpanded => !prevExpanded);
