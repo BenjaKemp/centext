@@ -1,0 +1,107 @@
+@import '../../styles/_variables.css';
+
+.sidebar {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    padding: var(--small-spacing-unit);
+    box-sizing: border-box;
+}
+
+.sidebar::after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    bottom: 5%; 
+    right: 0;
+    width: 2px;
+    background-color: var(--black-color);
+    z-index: 11;
+}
+
+.sidebar.active {
+    display: flex; 
+}
+
+.sidebar-toggle {
+    display: block;
+    position: fixed;
+    top: var(--small-spacing-unit);
+    left: var(--small-spacing-unit);
+    z-index: 20;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: var(--small-spacing-unit);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+}
+
+.sidebar-close {
+    position: absolute;
+    top: var(--small-spacing-unit);
+    right: var(--small-spacing-unit);
+    z-index: 20;
+    background-color: var(--warning-color);
+    color: var(--white-color);
+    border: none;
+    padding: var(--small-spacing-unit);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black-color);
+    z-index: 9; 
+}
+
+.sidebar-children {
+    position: relative;
+    z-index: 11;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+    padding: var(--small-spacing-unit);
+}
+
+.sidebar-children > *:not(:last-child) {
+    border-bottom: 2px solid var(--black-color);; 
+}
+
+@media (min-width: 769px) {
+
+    .sidebar {
+        display: flex; 
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: none;
+        z-index: 1;
+        padding: 0;
+    }
+
+    .sidebar-overlay {
+        display: none;
+    }
+
+    .sidebar-toggle {
+        display: none; 
+    }
+
+    .sidebar-close {
+        display: none;
+    }
+}

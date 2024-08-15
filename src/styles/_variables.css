@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #007bff;
+    --warning-color: #ff0000;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --small-spacing-unit: 10px;
+    --large-spacing-unit: 20px;
+    --font-size-base: 16px;
+    --font-size-large: 20px;
+}

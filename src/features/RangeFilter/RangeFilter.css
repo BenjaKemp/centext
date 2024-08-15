@@ -1,0 +1,54 @@
+@import '../../styles/_variables.css';
+
+.range-slider {
+  width: 100%;
+  padding: var(--small-spacing-unit) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: center;
+  height: 100%;
+}
+
+.range-slider h1,
+.range-slider h3 {
+  text-align: left;
+  margin: 0; 
+  padding-bottom: var(--small-spacing-unit); 
+}
+
+.range-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 15px;
+  background: var(--primary-color);
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  margin: var(--small-spacing-unit) 0;
+}
+
+.range-slider input[type="range"]:hover {
+  opacity: 1;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-color);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.range-slider .range-labels {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-base);
+  color: var(--black-color);
+  margin-top: var(--small-spacing-unit);
+}

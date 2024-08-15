@@ -1,0 +1,13 @@
+.node-name {
+    cursor: pointer;
+  }
+  
+  .node-name.active {
+    text-decoration: underline;
+  }
+  
+  .arrow {
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  

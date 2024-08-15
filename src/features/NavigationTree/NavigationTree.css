@@ -1,0 +1,32 @@
+@import '../../styles/_variables.css';
+
+.navigation-tree {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navigation-tree ul {
+  list-style-type: none;
+  padding-left: var(--large-spacing-unit);
+}
+
+.navigation-tree li {
+  position: relative;
+  padding-left: var(--large-spacing-unit);
+  cursor: pointer;
+}
+
+.navigation-tree li::before {
+  content: ''; 
+  position: absolute;
+  left: 0;
+  transition: transform 0.2s ease;
+}
+
+.arrow {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+
