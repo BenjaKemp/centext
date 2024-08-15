@@ -1,5 +1,4 @@
-import { ApplicationType } from '../types';
-import { ActionType, SetApplicationsAction, SetSpendFilterAction, SetNamesFilterAction } from '../types';
+import { ActionType, SetApplicationsAction, SetSpendFilterAction, SetNamesFilterAction, ApplicationType } from '../types';
 
 export const setApplications = (applications: ApplicationType[]): SetApplicationsAction => ({
     type: ActionType.SET_APPLICATIONS,

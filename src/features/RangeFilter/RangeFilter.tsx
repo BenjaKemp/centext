@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppContext } from '../../context/AppContext';
 import { setSpendFilter } from '../../actions';
 import { RangeInput } from '../../common';
@@ -8,12 +8,6 @@ interface RangeFilterProps {}
 
 const RangeFilter: React.FC<RangeFilterProps> = React.memo(() => {
   const { state, dispatch } = useAppContext();
-
-  useEffect(() => {
-    if (state.filters.spend === 0) {
-      dispatch(setSpendFilter(state.filters.spend));
-    }
-  }, [dispatch, state.filters.spend]);
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSpendFilter(Number(e.target.value)));
