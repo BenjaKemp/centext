@@ -1,47 +1,48 @@
 import { State, Action, ActionType } from '../types';
-import { applyFilters, calculateMinMaxSpend } from '../utils';
+import { applyFilters, calculateMinMaxSpend, groupApplications } from '../utils';
 
 export const reducer = (state: State, action: Action): State => {
     switch (action.type) {
-        case ActionType.SET_APPLICATIONS:
-            // Calculate minSpend, maxSpend, and midpoint when applications are set
+        case ActionType.SET_APPLICATIONS: {
             const { minSpend, maxSpend } = calculateMinMaxSpend(action.payload);
             const midpoint = (minSpend + maxSpend) / 2;
+            const treeData = groupApplications(action.payload);
+            const newFilters = {
+                ...state.filters,
+                minSpend,
+                maxSpend,
+                spend: state.filters.spend === 0 ? midpoint : state.filters.spend, // Default spend to midpoint if it's 0
+            };
+
+            const filteredApplications = applyFilters(action.payload, newFilters);
 
             return {
                 ...state,
                 applications: action.payload,
-                filters: {
-                    ...state.filters,
-                    minSpend,
-                    maxSpend,
-                    spend: state.filters.spend === 0 ? midpoint : state.filters.spend, // Default spend to midpoint if it's 0
-                },
-           
-                filteredApplications: applyFilters(action.payload, {
-                    ...state.filters,
-                    spend: state.filters.spend === 0 ? midpoint : state.filters.spend,
-                }),
+                treeData, 
+                filters: newFilters,
+                filteredApplications,
             };
-        case ActionType.SET_SPEND_FILTER:
+        }
+        case ActionType.SET_SPEND_FILTER: {
+            // Simply apply the spend filter without recalculating min/max
+            const newFilters = { ...state.filters, spend: action.payload };
             return {
                 ...state,
-                filters: { ...state.filters, spend: action.payload },
-                filteredApplications: applyFilters(state.applications, {
-                    ...state.filters,
-                    spend: action.payload,
-                }),
+                filters: newFilters,
+                filteredApplications: applyFilters(state.applications, newFilters),
             };
-        case ActionType.SET_NAMES_FILTER:
+        }
+        case ActionType.SET_NAMES_FILTER: {
+            // Toggle the BCAP filter and apply
             const newBCAPFilter = state.filters.BCAP === action.payload ? '' : action.payload;
+            const newFilters = { ...state.filters, BCAP: newBCAPFilter };
             return {
                 ...state,
-                filters: { ...state.filters, BCAP: newBCAPFilter },
-                filteredApplications: applyFilters(state.applications, {
-                    ...state.filters,
-                    BCAP: newBCAPFilter,
-                }),
+                filters: newFilters,
+                filteredApplications: applyFilters(state.applications, newFilters),
             };
+        }
         default:
             return state;
     }

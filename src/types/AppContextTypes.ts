@@ -1,3 +1,4 @@
+  import { TreeNode } from '.'
   export interface ApplicationType {
     id: string;
     name: string;
@@ -10,6 +11,7 @@
 export interface State {
     applications: ApplicationType[];
     filteredApplications: ApplicationType[];
+    treeData: TreeNode[];
     filters: {
         spend: number; 
         BCAP: string;  
