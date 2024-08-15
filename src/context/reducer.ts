@@ -11,7 +11,7 @@ export const reducer = (state: State, action: Action): State => {
                 ...state.filters,
                 minSpend,
                 maxSpend,
-                spend: state.filters.spend === 0 ? midpoint : state.filters.spend, // Default spend to midpoint if it's 0
+                spend: midpoint 
             };
 
             const filteredApplications = applyFilters(action.payload, newFilters);
@@ -25,7 +25,6 @@ export const reducer = (state: State, action: Action): State => {
             };
         }
         case ActionType.SET_SPEND_FILTER: {
-            // Simply apply the spend filter without recalculating min/max
             const newFilters = { ...state.filters, spend: action.payload };
             return {
                 ...state,
@@ -34,7 +33,6 @@ export const reducer = (state: State, action: Action): State => {
             };
         }
         case ActionType.SET_NAMES_FILTER: {
-            // Toggle the BCAP filter and apply
             const newBCAPFilter = state.filters.BCAP === action.payload ? '' : action.payload;
             const newFilters = { ...state.filters, BCAP: newBCAPFilter };
             return {
