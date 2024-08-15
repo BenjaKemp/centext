@@ -2,18 +2,14 @@ import React, { useMemo, useState, useCallback } from 'react';
 import { useAppContext } from '../../context/AppContext';
 import { groupApplications } from '../../utils';
 import { NavigationTreeNodeComponent } from './NavigationTreeNodeComponent';
-import { ApplicationType } from '../../types';
 import { setNamesFilter } from '../../actions';
 import './NavigationTree.css';
 
-export interface NavigationTreeProps {
-  applications: ApplicationType[];
-}
-
-const NavigationTree: React.FC<NavigationTreeProps> = React.memo(({ applications }) => {
-  const { dispatch } = useAppContext();
+const NavigationTree: React.FC = React.memo(() => {
+  const { state, dispatch } = useAppContext();
   const [activeNodeName, setActiveNodeName] = useState<string>('');
-  const treeData = useMemo(() => groupApplications(applications), [applications]);
+
+  const treeData = useMemo(() => groupApplications(state.applications), [state.applications]);
 
   const handleNameClick = useCallback((name: string) => {
     const filterName = name === activeNodeName ? '' : name;

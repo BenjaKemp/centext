@@ -33,7 +33,7 @@ const AppContent: React.FC = () => {
     return (
         <div className="app-container">
             <SideBar>
-                <NavigationTree applications={state.applications} />
+                <NavigationTree />
                 <RangeFilter/>
             </SideBar>
             <CardContainer>
